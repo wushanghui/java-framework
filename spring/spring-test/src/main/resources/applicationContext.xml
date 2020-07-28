@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="top.wushanghui.ioc.Book" id="book"></bean>
+    <bean class="top.wushanghui.ioc.Book" id="book2"></bean>
+
+    <bean class="top.wushanghui.ioc.User" name="user">
+        <constructor-arg index="0" value="1"/>
+        <constructor-arg index="1" value="小明"/>
+        <constructor-arg index="2" value="25"/>
+    </bean>
+    <bean class="top.wushanghui.ioc.User" name="user2">
+        <constructor-arg name="name" value="小红"/>
+        <constructor-arg name="age" value="26"/>
+        <constructor-arg name="id" value="2"/>
+    </bean>
+
+    <bean class="top.wushanghui.ioc.User" id="user3">
+        <property name="id" value="3"/>
+        <property name="name" value="小天"/>
+        <property name="age" value="27"/>
+    </bean>
+    <bean class="top.wushanghui.ioc.User" id="user4"></bean>
+
+
+    <bean class="top.wushanghui.ioc.User" id="user5">
+        <property name="dog" ref="dog"></property>
+    </bean>
+
+    <bean class="top.wushanghui.ioc.Dog" id="dog">
+        <property name="name" value="哈士奇"/>
+        <property name="color" value="灰色"/>
+    </bean>
+
+    <bean class="top.wushanghui.ioc.User" id="user6">
+        <property name="favorites">
+            <array> <!--或者使用list标签-->
+                <value>乒乓球</value>
+                <value>篮球</value>
+                <value>网球</value>
+            </array>
+        </property>
+        <property name="cats">
+            <list>
+                <ref bean="cat1"/>
+                <ref bean="cat2"/>
+                <bean class="top.wushanghui.ioc.Cat" id="cat3">
+                    <property name="name" value="白猫" />
+                    <property name="color" value="白色" />
+                </bean>
+            </list>
+        </property>
+    </bean>
+    <bean class="top.wushanghui.ioc.Cat" id="cat1">
+        <property name="name" value="狸花猫" />
+        <property name="color" value="黑白相间" />
+    </bean>
+    <bean class="top.wushanghui.ioc.Cat" id="cat2">
+        <property name="name" value="小花猫" />
+        <property name="color" value="黑色" />
+    </bean>
+</beans>
