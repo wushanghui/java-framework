@@ -56,7 +56,10 @@ public class Main {
         System.out.println(user5); // User{id=null, name='null', age=null, dog=Dog{name='哈士奇', color='灰色'}}
 
         User user6 = (User) context.getBean("user6");
-        System.out.println(user6); // User{id=null, name='null', age=null, dog=null, favorites=[乒乓球, 篮球, 网球]}
+        System.out.println(user6); // User{... cats=[Cat{name='猫1', color='黑色'}, Cat{name='猫2', color='红色'}, Cat{name='猫3', color='白色'}]}
+        User user7 = (User) context.getBean("user7");
+        System.out.println(user7); // User{map={key1=1, key2=hello}, properties={prop2=123, prop1=value1}}
+
     }
 
 }

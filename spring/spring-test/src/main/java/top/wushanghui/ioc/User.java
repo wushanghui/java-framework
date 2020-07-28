@@ -4,6 +4,8 @@ import com.sun.scenario.effect.impl.prism.PrImage;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 /**
  * @author wsh
@@ -20,6 +22,10 @@ public class User {
     private String[] favorites;
 
     private List<Cat> cats;
+
+    private Map<String, Object> map;
+
+    private Properties properties;
 
     public User(Integer id, String name, Integer age) {
         this.id = id;
@@ -78,6 +84,22 @@ public class User {
         this.cats = cats;
     }
 
+    public Map<String, Object> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<String, Object> map) {
+        this.map = map;
+    }
+
+    public Properties getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Properties properties) {
+        this.properties = properties;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -87,6 +109,8 @@ public class User {
                 ", dog=" + dog +
                 ", favorites=" + Arrays.toString(favorites) +
                 ", cats=" + cats +
+                ", map=" + map +
+                ", properties=" + properties +
                 '}';
     }
 }

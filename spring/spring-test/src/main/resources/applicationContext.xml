@@ -3,8 +3,8 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="top.wushanghui.ioc.Book" id="book"></bean>
-    <bean class="top.wushanghui.ioc.Book" id="book2"></bean>
+    <bean class="top.wushanghui.ioc.Book" id="book"/>
+    <bean class="top.wushanghui.ioc.Book" id="book2"/>
 
     <bean class="top.wushanghui.ioc.User" name="user">
         <constructor-arg index="0" value="1"/>
@@ -22,11 +22,11 @@
         <property name="name" value="小天"/>
         <property name="age" value="27"/>
     </bean>
-    <bean class="top.wushanghui.ioc.User" id="user4"></bean>
+    <bean class="top.wushanghui.ioc.User" id="user4"/>
 
 
     <bean class="top.wushanghui.ioc.User" id="user5">
-        <property name="dog" ref="dog"></property>
+        <property name="dog" ref="dog"/>
     </bean>
 
     <bean class="top.wushanghui.ioc.Dog" id="dog">
@@ -47,18 +47,33 @@
                 <ref bean="cat1"/>
                 <ref bean="cat2"/>
                 <bean class="top.wushanghui.ioc.Cat" id="cat3">
-                    <property name="name" value="白猫" />
+                    <property name="name" value="猫3" />
                     <property name="color" value="白色" />
                 </bean>
             </list>
         </property>
     </bean>
     <bean class="top.wushanghui.ioc.Cat" id="cat1">
-        <property name="name" value="狸花猫" />
-        <property name="color" value="黑白相间" />
+        <property name="name" value="猫1" />
+        <property name="color" value="黑色" />
     </bean>
     <bean class="top.wushanghui.ioc.Cat" id="cat2">
-        <property name="name" value="小花猫" />
-        <property name="color" value="黑色" />
+        <property name="name" value="猫2" />
+        <property name="color" value="红色" />
+    </bean>
+
+    <bean class="top.wushanghui.ioc.User" id="user7">
+        <property name="map">
+            <map>
+                <entry key="key1" value="1"/>
+                <entry key="key2" value="hello"/>
+            </map>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="prop1">value1</prop>
+                <prop key="prop2">123</prop>
+            </props>
+        </property>
     </bean>
 </beans>
