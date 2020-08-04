@@ -19,7 +19,7 @@ public class ProduceController {
 
     @GetMapping("/test")
     public String produceMessage() {
-        for (int i = 1; i <= 100; i++) {
+        for (int i = 1; i <= 1; i++) {
             messageProducerService.sendMessage(new Employee(String.valueOf(i), "小明", 25));
         }
         return "投递成功";

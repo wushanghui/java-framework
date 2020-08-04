@@ -62,4 +62,10 @@ public class Main {
 
     }
 
+    @Test
+    public void test() {
+        String str = "n你";
+        System.out.println(str.length());
+    }
+
 }

@@ -3,6 +3,8 @@ package top.wushanghui.springbootconsumer;
 import com.rabbitmq.client.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.core.Message;
+import org.springframework.amqp.core.MessageProperties;
 import org.springframework.amqp.rabbit.annotation.*;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.messaging.handler.annotation.Headers;
@@ -29,10 +31,13 @@ public class MessageConsumer {
     @RabbitHandler //通知SpringBoot下面的方法用于接收消息。
     // 这个方法运行后将处于等待的状态，有新的消息进来就会自动触发下面的方法处理消息
     //@Payload 代表运行时将消息反序列化后注入到后面的参数中
-    public void handleMessage(String message, Channel channel,
+    public void handleMessage(Message message, Channel channel,
                               @Headers Map<String, Object> headers) {
         logger.info("=========================================");
         logger.info("接收到" + message);
+        logger.info(new String(message.getBody()));
+        MessageProperties messageProperties = message.getMessageProperties();
+        logger.info(messageProperties.toString());
         //所有消息处理后必须进行消息的ack，channel.basicAck()
         Long tag = (Long) headers.get(AmqpHeaders.DELIVERY_TAG);
         logger.info(tag.toString());
