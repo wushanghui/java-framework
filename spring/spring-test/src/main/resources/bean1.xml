@@ -3,5 +3,24 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean class="top.wushanghui.bean.Book" id="book"/>
+    <bean class="top.wushanghui.bean.Book" id="book" name="book3"/>
+    <bean class="top.wushanghui.bean.Book" id="book2"/>
+
+    <bean class="top.wushanghui.bean.Book" id="book4">
+        <constructor-arg index="0" value="1"/>
+        <constructor-arg index="1" value="Spring"/>
+        <constructor-arg index="2" value="100"/>
+    </bean>
+
+    <bean class="top.wushanghui.bean.Book" id="book5">
+        <constructor-arg name="id" value="2"/>
+        <constructor-arg name="name" value="Spring MVC"/>
+        <constructor-arg name="price" value="100"/>
+    </bean>
+
+    <bean class="top.wushanghui.bean.Book" id="book6">
+        <property name="id" value="3"/>
+        <property name="name" value="Mybatis"/>
+        <property name="price" value="100"/>
+    </bean>
 </beans>

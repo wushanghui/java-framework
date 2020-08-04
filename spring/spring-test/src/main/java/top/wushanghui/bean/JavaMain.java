@@ -9,8 +9,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class JavaMain {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean1.xml");
-        Book bean = context.getBean(Book.class);
-        System.out.println(bean);
+        ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("bean2.xml");
+        Book book4 = context.getBean("book", Book.class);
+        System.out.println(book4);
     }
 }
