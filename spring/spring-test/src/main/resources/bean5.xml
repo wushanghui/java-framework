@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <bean id="stu" class="top.wushanghui.bean.Student">
+        <!--数组类型属性注入-->
+        <property name="array">
+            <array>
+                <value>数组1</value>
+                <value>数组2</value>
+            </array>
+        </property>
+        <!--list 类型属性注入-->
+        <property name="list" ref="utilList"/>
+        <!--map 类型属性注入-->
+        <property name="maps">
+            <map>
+                <entry key="key1" value="value1" />
+                <entry key="key2" value="value2" />
+            </map>
+        </property>
+        <!--set 类型属性注入-->
+        <property name="sets">
+            <set>
+                <value>set1</value>
+                <value>set2</value>
+            </set>
+        </property>
+        <!--在集合里面设置对象类型值-->
+        <property name="courses">
+            <list>
+                <ref bean="course1"/>
+                <ref bean="course2"/>
+            </list>
+        </property>
+        <property name="properties">
+            <props>
+                <prop key="prop1">value1</prop>
+                <prop key="prop2">value2</prop>
+            </props>
+        </property>
+    </bean>
+    <bean id="course1" class="top.wushanghui.bean.Course">
+        <property name="name" value="JVM 课程"/>
+    </bean>
+    <bean id="course2" class="top.wushanghui.bean.Course">
+        <property name="name" value="设计模式"/>
+    </bean>
+    <util:list id="utilList">
+        <value>mysql</value>
+        <value>oracle</value>
+    </util:list>
+
+</beans>

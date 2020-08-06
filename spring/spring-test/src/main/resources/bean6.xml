@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--<bean id="myBean" class="top.wushanghui.bean.MyBean"/>-->
+
+    <bean id="dept" class="top.wushanghui.bean.Department" scope="prototype"/>
+
+    <bean id="p1,p2" class="top.wushanghui.bean.Person" scope="prototype"/>
+    <bean name="p3,p4" class="top.wushanghui.bean.Person" scope="prototype"/>
+
+    <bean id="lifeCycleBean" class="top.wushanghui.bean.LifeCycleBean" init-method="initMethod" destroy-method="destroyMethod">
+        <property name="name" value="bean 生命周期演示" />
+    </bean>
+    <bean id="myBeanPostProcessor" class="top.wushanghui.bean.MyBeanPostProcessor"/>
+</beans>

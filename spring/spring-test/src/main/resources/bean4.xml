@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="emp" class="top.wushanghui.bean.Employee">
+        <!--设置两个普通属性-->
+        <property name="id" value="2" />
+        <property name="name" value="Jerry"/>
+        <!--设置对象类型属性-->
+        <property name="department" ref="department" />
+    </bean>
+    <bean id="department" class="top.wushanghui.bean.Department">
+        <property name="name" value="软件开发部"/>
+    </bean>
+</beans>

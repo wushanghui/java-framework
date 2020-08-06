@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="userService" class="top.wushanghui.bean.UserService">
+        <property name="userDao" ref="userDaoImpl"/>
+    </bean>
+    <bean id="userDaoImpl" class="top.wushanghui.bean.UserDaoImpl"/>
+
+    <bean id="emp" class="top.wushanghui.bean.Employee">
+        <!--设置两个普通属性-->
+        <property name="id" value="1" />
+        <property name="name" value="Tom"/>
+        <!--设置对象类型属性-->
+        <property name="department">
+            <bean class="top.wushanghui.bean.Department">
+                <property name="name" value="软件开发部"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

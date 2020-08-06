@@ -68,4 +68,8 @@ public class Main {
         System.out.println(str.length());
     }
 
+    public static void main(String[] args) {
+
+    }
+
 }
