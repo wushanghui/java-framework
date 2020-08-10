@@ -7,10 +7,7 @@ import org.springframework.stereotype.Repository;
  * @date 2020/8/6 22:12
  * @describe
  */
-@Repository
-public class UserDao {
+public interface UserDao {
 
-    public void add() {
-        System.out.println("UserDao add()");
-    }
+    public void add();
 }
