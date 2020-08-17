@@ -15,10 +15,6 @@ public class Main {
     public static void main(String[] args) {
         ApplicationContext ctx = new AnnotationConfigApplicationContext(MultiConfig.class);
         MultiBean multiBean = ctx.getBean(MultiBean.class);
-        for (int i = 0; i < 10; i++) {
-            multiBean.testMulti();
-            System.out.println("================");
-        }
-
+        multiBean.testMulti();
     }
 }
