@@ -21,6 +21,9 @@ public interface UserService {
     public User getOne(BigInteger id);
     public List<User> getAll();
     public int queryCount();
-
+    public User getUserByName(String name);
     public void accountMoney();
+
+    public void addMoney();
+    public void reduceMoney();
 }

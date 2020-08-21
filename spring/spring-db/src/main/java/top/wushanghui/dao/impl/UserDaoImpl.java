@@ -4,14 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import top.wushanghui.dao.UserDao;
 import top.wushanghui.entity.User;
 
-import java.awt.print.Book;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -90,15 +89,35 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    @Transactional
-    public void reduceMoney() {
+    @Transactional(propagation = Propagation.NESTED)
+    public void reduceMoney(String name, Integer money) {
         String sql = "update user set money = money-? where name = ?";
-        jdbcTemplate.update(sql, 100, "小明");
+        jdbcTemplate.update(sql, money, name);
+        System.out.println("reduceMoney");
+
     }
 
     @Override
-    public void addMoney() {
+    @Transactional(propagation = Propagation.NESTED)
+    public void addMoney(String name, Integer money) {
         String sql = "update user set money = money+? where name = ?";
-        jdbcTemplate.update(sql, 100, "小红");
+        jdbcTemplate.update(sql, money, name);
+        int i = 1 / 0;
+
+    }
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    public void addMoney2(String name, Integer money) {
+        String sql = "update account set money = money+? where name = ?";
+        jdbcTemplate.update(sql, money, name);
+        System.out.println("addMoney2");
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        String sql = "select * from user where name = ?";
+        //调用方法
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), name);
     }
 }
