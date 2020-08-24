@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="xmlAspect" class="top.wushanghui.aop.xml.aspect.XmlAspect"/>
+    <bean id="roleService" class="top.wushanghui.aop.xml.service.impl.RoleServiceImppl"/>
+    <bean id="roleVerifier" class="top.wushanghui.aop.xml.verifier.impl.RoleVerifierImpl"/>
+
+    <aop:config>
+        <!--引用xmlAspect作为切面-->
+        <aop:aspect ref="xmlAspect">
+            <!--定义切点-->
+            <aop:pointcut id="print" expression="execution(* top.wushanghui.aop.xml.service.impl.RoleServiceImppl.printRole(..))"/>
+            <aop:before method="before" pointcut="execution(* top.wushanghui.aop.xml.service.impl.RoleServiceImppl.printRole(..)) and args(role, sort)"/>
+            <!--定义通知，引入切点-->
+            <aop:after method="after" pointcut-ref="print"/>
+            <aop:after-returning method="afterReturning" pointcut-ref="print"/>
+            <aop:after-throwing method="afterThrowing" pointcut-ref="print"/>
+            <aop:around method="around" pointcut-ref="print"/>
+            <aop:declare-parents types-matching="top.wushanghui.aop.xml.service.impl.RoleServiceImppl+"
+                                 implement-interface="top.wushanghui.aop.xml.verifier.RoleVerifier"
+                                    default-impl="top.wushanghui.aop.xml.verifier.impl.RoleVerifierImpl"/>
+        </aop:aspect>
+        
+    </aop:config>
+</beans>

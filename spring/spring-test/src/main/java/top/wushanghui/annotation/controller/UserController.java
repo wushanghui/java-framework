@@ -1,5 +1,6 @@
 package top.wushanghui.annotation.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import top.wushanghui.annotation.service.UserService;
 
@@ -13,7 +14,7 @@ import javax.annotation.Resource;
 @Controller
 public class UserController {
 
-    @Resource
+    @Autowired
     private UserService userService;
 
     public void add() {
