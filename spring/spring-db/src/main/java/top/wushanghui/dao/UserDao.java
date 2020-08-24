@@ -22,7 +22,10 @@ public interface UserDao {
     public List<User> getAll();
     public int queryCount();
 
-    void reduceMoney();
+    void reduceMoney(String name, Integer money);
 
-    void addMoney();
+    void addMoney(String name, Integer money);
+    void addMoney2(String name, Integer money);
+
+    User getUserByName(String name);
 }

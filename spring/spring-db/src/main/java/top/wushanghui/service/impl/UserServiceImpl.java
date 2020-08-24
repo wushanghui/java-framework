@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import top.wushanghui.dao.UserDao;
+import top.wushanghui.dao.impl.UserDao2;
 import top.wushanghui.entity.User;
 import top.wushanghui.service.UserService;
 
@@ -22,6 +23,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+    @Autowired
+    private UserDao2 userDao2;
 
     @Override
     public int add(User user) {
@@ -69,12 +73,40 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+<<<<<<< .mine
     @Transactional(propagation = Propagation.REQUIRED)
-    public void accountMoney() {
-        //lucy 少 100
-        userDao.reduceMoney();
-        int i = 1 / 0;
-        //mary 多 100
-        userDao.addMoney();
+
+
+
+
+
+=======
+    public User getUserByName(String name) {
+        return userDao.getUserByName(name);
     }
+
+    @Override
+    @Transactional
+>>>>>>> .theirs
+    public void accountMoney() {
+        System.out.println("accountMoney");
+
+        userDao.reduceMoney("小明", 100);
+        userDao.addMoney("小红", 100);
+        int i = 1 / 0;
+
+    }
+
+    @Override
+    public void addMoney() {
+        userDao.addMoney("小红", 100);
+    }
+
+    @Override
+    @Transactional
+    public void reduceMoney() {
+        userDao.reduceMoney("小明", 100);
+    }
+
+
 }
