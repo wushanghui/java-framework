@@ -2,6 +2,7 @@ package top.wushanghui.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import top.wushanghui.dao.UserDao;
 import top.wushanghui.entity.User;
@@ -68,7 +69,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional()
+    @Transactional(propagation = Propagation.REQUIRED)
     public void accountMoney() {
         //lucy 少 100
         userDao.reduceMoney();
