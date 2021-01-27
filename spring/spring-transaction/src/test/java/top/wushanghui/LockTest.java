@@ -2,11 +2,11 @@ package top.wushanghui;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import top.wushanghui.config.TxConfig;
+import top.wushanghui.entity.Role;
 import top.wushanghui.entity.User;
+import top.wushanghui.service.RoleService;
 import top.wushanghui.service.UserService;
 
 import java.math.BigDecimal;
@@ -23,23 +23,13 @@ public class LockTest {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private RoleService roleService;
+
     @Test
     public void pessimisticLock() throws InterruptedException {
 
-//        // 初始化工作 插入一个用户
-//        Thread threadA = new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                User user = new User(new BigInteger("1"), "Jerry", "1", new BigDecimal("1000"));
-//                // 先删除
-//                userService.delete(user.getId());
-//
-//                // 然后添加
-//                userService.add(user);
-//            }
-//        });
-
-        Thread threadB = new Thread(new Runnable() {
+        Thread threadA = new Thread(new Runnable() {
             @Override
             public void run() {
                 User user = new User(new BigInteger("1"), "Jerry", "1", new BigDecimal("2000"));
@@ -47,7 +37,7 @@ public class LockTest {
             }
         });
 
-        Thread threadC = new Thread(new Runnable() {
+        Thread threadB = new Thread(new Runnable() {
             @Override
             public void run() {
                 // 上来先睡眠1s
@@ -61,15 +51,61 @@ public class LockTest {
             }
         });
 
-        //threadA.start();
-        // 等待threadA做完初始化工作
-        //threadA.join();
 
+        threadA.start();
         threadB.start();
-        threadC.start();
 
+        threadA.join();
         threadB.join();
-        threadC.join();
+        System.out.println("main over!");
+
+    }
+
+
+    @Test
+    public void optimisticLock() throws InterruptedException {
+
+        Thread threadA = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean result = false;
+                int retryNum = 5;
+                Role role = new Role("admin", "超级管理员", 1);
+                while (retryNum > 0) {
+                    int num = roleService.update(role);
+                    if (num == 1) {
+                        result = true;
+                        break;
+                    } else {
+                        Role query = roleService.query("admin");
+                        //
+                    }
+                }
+
+                int num = roleService.update(role);
+                if (num == 0) {
+                    throw new RuntimeException("threadA 更新角色失败！");
+                }
+            }
+        });
+
+        Thread threadB = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Role role = new Role("admin", "超级管理员Plus", 1);
+                int num = roleService.update(role);
+                if (num == 0) {
+                    throw new RuntimeException("threadB 更新角色失败！");
+                }
+            }
+        });
+
+
+        threadA.start();
+        threadB.start();
+
+        threadA.join();
+        threadB.join();
         System.out.println("main over!");
 
     }
