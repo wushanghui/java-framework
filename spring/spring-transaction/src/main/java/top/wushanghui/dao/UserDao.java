@@ -19,6 +19,7 @@ public interface UserDao {
     public int delete(BigInteger id);
     public int[] batchDelete(List<BigInteger> list);
     public User getOne(BigInteger id);
+    public User getOneByForUpdate(BigInteger id);
     public List<User> getAll();
     public int queryCount();
 

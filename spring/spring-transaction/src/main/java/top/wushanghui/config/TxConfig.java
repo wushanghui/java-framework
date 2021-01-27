@@ -29,9 +29,9 @@ public class TxConfig {
     public DruidDataSource getDruidDataSource() {
         DruidDataSource dataSource = new DruidDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://192.168.1.147:3306/spring?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8");
-        dataSource.setUsername("root");
-        dataSource.setPassword("root");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/spring?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8");
+        dataSource.setUsername("wushanghui");
+        dataSource.setPassword("12345");
         return dataSource;
     }
 

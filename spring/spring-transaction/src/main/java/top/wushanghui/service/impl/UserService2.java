@@ -19,9 +19,13 @@ public class UserService2 {
     @Autowired
     private UserDao userDao;
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @Transactional
     public int addUser2(int i) {
         User user = new User("小红", "01", new BigDecimal("2000"));
+
+        if (i == 100) {
+            throw new RuntimeException("出错了");
+        }
 
         return userDao.add(user);
     }

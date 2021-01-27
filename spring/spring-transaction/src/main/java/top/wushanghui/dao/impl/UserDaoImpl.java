@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import top.wushanghui.dao.UserDao;
 import top.wushanghui.entity.User;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,13 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User getOne(BigInteger id) {
         String sql = "select * from user where id = ?";
+        //调用方法
+        return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), id);
+    }
+
+    @Override
+    public User getOneByForUpdate(BigInteger id) {
+        String sql = "select * from user where id = ? for update";
         //调用方法
         return jdbcTemplate.queryForObject(sql, new BeanPropertyRowMapper<>(User.class), id);
     }
