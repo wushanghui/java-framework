@@ -8,6 +8,7 @@ import top.wushanghui.rabbitmq.utils.RabbitUtils;
 import java.io.IOException;
 
 public class Baidu {
+
     public static void main(String[] args) throws IOException {
         Connection connection = RabbitUtils.getConnection();
         final Channel channel = connection.createChannel();
