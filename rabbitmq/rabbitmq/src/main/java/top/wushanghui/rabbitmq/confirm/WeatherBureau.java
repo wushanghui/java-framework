@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 public class WeatherBureau {
+
     public static void main(String[] args) throws IOException, TimeoutException {
         Map area = new LinkedHashMap<String, String>();
         area.put("china.hebei.shijiazhuang.20991011", "中国河北石家庄20991011天气数据");
@@ -28,16 +29,19 @@ public class WeatherBureau {
         //开启confirm监听模式
         channel.confirmSelect();
         channel.addConfirmListener(new ConfirmListener() {
+            @Override
             public void handleAck(long l, boolean b) throws IOException {
                 //第二个参数代表接收的数据是否为批量接收，一般我们用不到。
                 System.out.println("消息已被Broker接收,Tag:" + l);
             }
 
+            @Override
             public void handleNack(long l, boolean b) throws IOException {
                 System.out.println("消息已被Broker拒收,Tag:" + l);
             }
         });
         channel.addReturnListener(new ReturnCallback() {
+            @Override
             public void handle(Return r) {
                 System.err.println("===========================");
                 System.err.println("Return编码：" + r.getReplyCode() + "-Return描述:" + r.getReplyText());

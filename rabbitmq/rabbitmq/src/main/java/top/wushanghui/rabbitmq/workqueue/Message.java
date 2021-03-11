@@ -1,11 +1,11 @@
 package top.wushanghui.rabbitmq.workqueue;
 
-public class SMS {
+public class Message {
     private String name;
     private String mobile;
     private String content;
 
-    public SMS(String name, String mobile, String content) {
+    public Message(String name, String mobile, String content) {
         this.name = name;
         this.mobile = mobile;
         this.content = content;

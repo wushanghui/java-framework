@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
 public class Producer {
+
     public static void main(String[] args) throws IOException, TimeoutException {
 
         //TCP 物理连接
@@ -28,7 +29,7 @@ public class Producer {
         //队列名称
         //额外的设置属性
         //最后一个参数是要传递的消息字节数组
-        String message = "helloworld";
+        String message = "HelloWorld";
         channel.basicPublish("", RabbitConstant.QUEUE_HELLOWORLD, null, message.getBytes());
         channel.close();
         conn.close();

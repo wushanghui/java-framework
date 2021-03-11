@@ -16,12 +16,12 @@ public class RabbitUtils {
     }
 
     public static Connection getConnection() {
-        Connection conn = null;
+        Connection connection = null;
         try {
-            conn = connectionFactory.newConnection();
-            return conn;
+            connection = connectionFactory.newConnection();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+        return connection;
     }
 }

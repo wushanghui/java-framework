@@ -6,7 +6,7 @@ import top.wushanghui.rabbitmq.utils.RabbitUtils;
 
 import java.io.IOException;
 
-public class SMSSender3 {
+public class MessageSender2 {
     public static void main(String[] args) throws IOException {
         Connection connection = RabbitUtils.getConnection();
         final Channel channel = connection.createChannel();
@@ -16,9 +16,9 @@ public class SMSSender3 {
             @Override
             public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
                 String jsonSMS = new String(body);
-                System.out.println("SMSSender3-短信发送成功:" + jsonSMS);
+                System.out.println("SMSSender2-短信发送成功:" + jsonSMS);
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

@@ -7,6 +7,7 @@ import top.wushanghui.rabbitmq.utils.RabbitUtils;
 import java.io.IOException;
 
 public class Consumer {
+
     public static void main(String[] args) throws IOException {
         Connection conn = RabbitUtils.getConnection();
         //创建通道
@@ -23,7 +24,7 @@ public class Consumer {
 class MyConsumer extends DefaultConsumer {
     private Channel channel;
 
-    //重写构造函数,Channel通道对象需要从外层传入，在handleDelivery中要用到
+    // 重写构造函数,Channel通道对象需要从外层传入，在handleDelivery中要用到
     public MyConsumer(Channel channel) {
         super(channel);
         this.channel = channel;
