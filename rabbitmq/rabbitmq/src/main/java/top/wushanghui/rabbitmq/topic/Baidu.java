@@ -7,15 +7,15 @@ import top.wushanghui.rabbitmq.utils.RabbitUtils;
 import java.io.IOException;
 
 public class Baidu {
+
     public static void main(String[] args) throws IOException {
         Connection connection = RabbitUtils.getConnection();
         final Channel channel = connection.createChannel();
         channel.queueDeclare(RabbitConstant.QUEUE_BAIDU, false, false, false, null);
         //queueBind用于将队列与交换机绑定
         //参数1：队列名 参数2：交互机名  参数三：路由key
-        channel.queueBind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_TOPIC, "*.*.*.20991011");
-        //channel.queueUnbind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_TOPIC, "*.*.*.20991011");
-        //*.hebei.*.*
+        channel.queueBind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_TOPIC, "china.jiangsu.#");
+
         channel.basicQos(1);
         channel.basicConsume(RabbitConstant.QUEUE_BAIDU , false , new DefaultConsumer(channel){
             @Override
