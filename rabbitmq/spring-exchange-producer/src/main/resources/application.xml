@@ -26,7 +26,6 @@
     <bean id="newsProducer" class="top.wushanghui.exchange.NewsProducer">
         <property name="rabbitTemplate" ref="template"/>
     </bean>
-
     <!-- RabbitAdmin对象用于创建、绑定、管理队列与交换机 -->
     <rabbit:admin id="rabbitAdmin" connection-factory="connectionFactory"/>
 </beans>

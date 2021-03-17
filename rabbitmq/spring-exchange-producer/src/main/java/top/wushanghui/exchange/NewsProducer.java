@@ -27,10 +27,16 @@ public class NewsProducer {
         System.out.println("新闻发送成功");
     }
 
+    public void sendNews(String routingKey, String message) {
+        rabbitTemplate.convertAndSend(routingKey, message);
+        System.out.println("新闻发送成功");
+    }
+
     public static void main(String[] args) {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:application.xml");
         NewsProducer np = (NewsProducer) ctx.getBean("newsProducer");
-        np.sendNews("us.20210316", new News("推特", "拜登当美国总统了", new Date(), "国外新闻"));
+//        np.sendNews("us.20210316", new News("推特", "拜登当美国总统了", new Date(), "国外新闻"));
         np.sendNews("china.20210316", new News("抖音", "54万的R8有吗", new Date(), "国内新闻"));
+//        np.sendNews("china.20210316", "test");
     }
 }
