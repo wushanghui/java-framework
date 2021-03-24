@@ -15,6 +15,10 @@ public class NewsConsumer {
     }
 
     public static void main(String[] args) {
+
+        String str = "1";
+        String[] split = str.split(",");
+        System.out.println(split[0]);
         ApplicationContext ctx = new ClassPathXmlApplicationContext("classpath:application.xml");
     }
 }
