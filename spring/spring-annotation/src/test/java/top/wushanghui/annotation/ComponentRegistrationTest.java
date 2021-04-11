@@ -87,5 +87,4 @@ public class ComponentRegistrationTest {
         System.out.println("FactoryBean 是否是单例的："+bean3 == bean4);
     }
 
-
 }
