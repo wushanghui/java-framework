@@ -3,6 +3,7 @@ package top.wushanghui.main;
 import org.junit.jupiter.api.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.support.GenericApplicationContext;
 import org.springframework.transaction.annotation.Transactional;
 import top.wushanghui.entity.User;
 import top.wushanghui.service.UserService;
@@ -23,6 +24,10 @@ public class TransactionTest {
     {
         ApplicationContext ctx = new ClassPathXmlApplicationContext("spring-config.xml");
         userService = ctx.getBean(UserService.class);
+
+        GenericApplicationContext context = new GenericApplicationContext();
+        context.registerBean(User.class, new User());
+
     }
 
     @Test

@@ -13,7 +13,7 @@ public class Client {
 
     public static void main(String[] args) {
         //调用服务器地址
-        WebClient webClient = WebClient.create("http://127.0.0.1:57860");
+        WebClient webClient = WebClient.create("http://127.0.0.1:50423");
         //根据 id 查询
         String id = "1";
         User user = webClient.get().uri("/users/{id}", id)
