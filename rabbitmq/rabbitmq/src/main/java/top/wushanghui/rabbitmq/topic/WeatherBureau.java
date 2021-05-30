@@ -12,17 +12,21 @@ import java.util.Map;
 import java.util.concurrent.TimeoutException;
 
 public class WeatherBureau {
-    public static void main(String[] args) throws IOException, TimeoutException {
-        Map area = new LinkedHashMap<String, String>();
-        area.put("china.hebei.shijiazhuang.20991011", "中国河北石家庄20991011天气数据");
-        area.put("china.shandong.qingdao.20991011", "中国山东青岛20991011天气数据");
-        area.put("china.henan.zhengzhou.20991011", "中国河南郑州20991011天气数据");
-        area.put("us.cal.la.20991011", "美国加州洛杉矶20991011天气数据");
 
-        area.put("china.hebei.shijiazhuang.20991012", "中国河北石家庄20991012天气数据");
-        area.put("china.shandong.qingdao.20991012", "中国山东青岛20991012天气数据");
-        area.put("china.henan.zhengzhou.20991012", "中国河南郑州20991012天气数据");
-        area.put("us.cal.la.20991012", "美国加州洛杉矶20991012天气数据");
+    public static void main(String[] args) throws IOException, TimeoutException {
+        Map<String, String> area = new LinkedHashMap<>();
+
+        // 苏北
+        area.put("china.jiangsu.xuzhou.20210311", "中国江苏<<徐州>>2021年3月11日天气数据");
+        area.put("china.jiangsu.shuqian.20210311", "中国江苏<<宿迁>>2021年3月11日天气数据");
+        area.put("china.jiangsu.lianyungang.20210311", "中国江苏<<连云港>>2021年3月11日天气数据");
+        area.put("china.jiangsu.huaian.20210311", "中国江苏<<淮安>>2021年3月11日天气数据");
+        area.put("china.jiangsu.yancheng.20210311", "中国江苏<<盐城>>2021年3月11日天气数据");
+
+        // 上海·
+        area.put("china.shanghai.songjiangqu.20210311", "中国上海<<松江区>>2021年3月11日天气数据");
+        area.put("china.shanghai.jinganqu.20210312", "中国上海<<静安区>>2021年3月12日天气数据");
+        area.put("china.shanghai.xuhuiqu.20210312", "中国上海<<徐汇区>>2021年3月12日天气数据");
 
         Connection connection = RabbitUtils.getConnection();
         Channel channel = connection.createChannel();
@@ -35,5 +39,6 @@ public class WeatherBureau {
 
         channel.close();
         connection.close();
+        System.out.println("天气数据发布成功");
     }
 }

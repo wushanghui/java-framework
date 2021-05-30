@@ -7,14 +7,18 @@ import top.wushanghui.rabbitmq.utils.RabbitUtils;
 import java.io.IOException;
 
 public class Baidu {
+
     public static void main(String[] args) throws IOException {
         Connection connection = RabbitUtils.getConnection();
         final Channel channel = connection.createChannel();
         channel.queueDeclare(RabbitConstant.QUEUE_BAIDU, false, false, false, null);
         //queueBind用于将队列与交换机绑定
         //参数1：队列名 参数2：交互机名  参数三：路由key
-        channel.queueBind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_ROUTING, "china.shandong.qingdao.20991011");
-        channel.queueBind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_ROUTING, "china.shandong.qingdao.20991012");
+        channel.queueBind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_ROUTING, "china.jiangsu.xuzhou.20210311");
+        channel.queueBind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_ROUTING, "china.jiangsu.shuqian.20210311");
+        channel.queueBind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_ROUTING, "china.jiangsu.lianyungang.20210311");
+        channel.queueBind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_ROUTING, "china.jiangsu.huaian.20210311");
+        channel.queueBind(RabbitConstant.QUEUE_BAIDU, RabbitConstant.EXCHANGE_WEATHER_ROUTING, "china.jiangsu.yancheng.20210311");
         channel.basicQos(1);
         channel.basicConsume(RabbitConstant.QUEUE_BAIDU , false , new DefaultConsumer(channel){
             @Override
